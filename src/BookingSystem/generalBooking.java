@@ -16,7 +16,7 @@ public class generalBooking implements ISearchDictionary{
     private Price aPrice = new Price();
     private Ticket aTicket = new Ticket();
     private UniversityDiscount aUniversityDiscount = new UniversityDiscount();
-
+    private TicketManager tm = new TicketManager();
     private int generalTicket;
     private int universityTicket;
     private String code;
@@ -622,5 +622,53 @@ public class generalBooking implements ISearchDictionary{
         else setTotalPrice(p);
 
     }
+    
+    // 子傑part
+    private int BookingHistoryID(String code, String uid) throws wrongInputException {
+//    	System.out.println("tm.toString() " + tm.toString());
+        for (int i = 0; i < tm.getSize(); i++) {
+            if (tm.getTicketObj(i).getCode().equals(code) && tm.getTicketObj(i).getUid().equals(uid)) {
+                return i;
+            }
+        }
+        throw new wrongInputException("NO BOOKING HISTORY FOUND");
+    }
+
+	public String BookingHistory(String code, String uid) {
+		String result = "";
+		try {
+			int idx = BookingHistoryID(code, uid);
+			result = "\nBooking Code: " + tm.getTicketObj(idx).getCode();
+			result = result + "\nUser ID: " + tm.getTicketObj(idx).getUid();
+			result = result + "\nDate: " + tm.getTicketObj(idx).getTicketInfo(0, "date");
+			result = result + "\nTickets Type: " + tm.getTicketObj(idx).getTicketInfo(0, "ticketsType");
+			result = result + "\nSeats: " + tm.getTicketObj(idx).getTicketInfo(0, "seats");
+			result = result + "\nPay Deadline: " + tm.getTicketObj(idx).getPayDeadLine();
+			result = result + "\nPayment: " + tm.getTicketObj(idx).getPayment() + "\n";
+		} catch (wrongInputException e) {
+			result = "Not found!\n";
+		}
+
+		return result;
+	}
+    
+	public String Unbooking(String code, String uid) {
+		int idx;
+		String result = "";
+		System.out.println(code + " "+ uid);
+		try {
+			result = BookingHistory( code,  uid);
+			idx = BookingHistoryID(code, uid);
+			System.out.println(tm.getSize());
+			tm.removeTicket(idx);
+			System.out.println(tm.getSize());
+			tm.save();
+		} catch (wrongInputException e) {
+			System.out.println("Not found!\n"+ e);
+			result = "Not found!\n";
+		}
+		return result;
+	}
+   
 
 }

@@ -48,7 +48,7 @@ public class Controller {
 
 		// 退票頁面
 		cancelView = new CancelView();
-		cancelView.addCancelButtonListener(new GoCancelButtonListener());
+		cancelView.addCancelButtonListener(new CancelButtonListerner());
 		cancelView.addHomeButtonListener(new GoHomeListener());
 
 		// 訂票查詢頁面
@@ -82,10 +82,13 @@ public class Controller {
 			homeView.setVisible(false);
 		}
 	}
+
+	
 	
 	public class GoCancelButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+
 			cancelView.setVisible(true);
 			homeView.setVisible(false);
 		}
@@ -100,19 +103,38 @@ public class Controller {
 	}
 	// HomeView Ends
 	
+	
+	// CancelView Begins
+	// handle cancelView enter button
+	public class CancelButtonListerner implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String result = order.Unbooking(cancelView.getReferNumber(), cancelView.getuidIn());
+			try {
+				JOptionPane.showMessageDialog(searchBookView, "Canceled tickets: " + result);
+			} catch (HeadlessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	
 	// SearchBookView Begins
 	public class GoSearchButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			lookinto = new LookInto();
+			
+			
+			order = new generalBooking();
 			String a = searchBookView.getReferNumber() + " " + searchBookView.getuidIn();
 	        System.out.println(a);
 			try {
-				JOptionPane.showMessageDialog(searchBookView, "BookingHistory: " + lookinto.BookingHistory(searchBookView.getReferNumber(), searchBookView.getuidIn()));
+				JOptionPane.showMessageDialog(searchBookView, "BookingHistory: " + order.BookingHistory(searchBookView.getReferNumber(), searchBookView.getuidIn()));
 			} catch (HeadlessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (wrongInputException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -214,7 +236,16 @@ public class Controller {
 			bt.selectCandidate(inputForselectCandidate);
 			
 			System.out.println("success or not "+bt);
-			
+
+			String information;
+//			for(int i=0; i<bookView.getNumberOfTicket()+bookView.getNumberOfDiscount(); i++) {
+//				information = "Ticket code: " + code + "\nUser ID: " + uid + "\nDate: " + date_0 + "\nTicket type: "
+//						+ type_0 + "\nNumber of general tickets: " + generalTicket_0
+//						+ "\nNumber of university discount tickets: " + uniTicket_0 + "\nStart station: " + start_0
+//						+ "\nEnd station: " + end_0 + "\nSeat: " + seat_0 + "\nTotal price: " + price
+//						+ "\nThe payment deadline: " + deadline;
+//			}
+//			JOptionPane.showMessageDialog(bookView, information);
 			
 //			order.setValidIndex(bookView.getOrderIndex());
 //			try {
@@ -241,12 +272,7 @@ public class Controller {
 //			String seat_0 = aTicketManager.getTicketObj(index + 1).getTicketInfo(0, "seats");
 //			String price = aTicketManager.getTicketObj(index + 1).getPayment();
 //			String deadline = aTicketManager.getTicketObj(index + 1).getPayDeadLine();
-//			String information = "Ticket code: " + code + "\nUser ID: " + uid + "\nDate: " + date_0 + "\nTicket type: "
-//					+ type_0 + "\nNumber of general tickets: " + generalTicket_0
-//					+ "\nNumber of university discount tickets: " + uniTicket_0 + "\nStart station: " + start_0
-//					+ "\nEnd station: " + end_0 + "\nSeat: " + seat_0 + "\nTotal price: " + price
-//					+ "\nThe payment deadline: " + deadline;
-//			JOptionPane.showMessageDialog(bookView, information);
+
 //			order = new generalBooking();
 //			index = index + 1;
 		}
