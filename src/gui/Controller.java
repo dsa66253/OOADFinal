@@ -208,7 +208,7 @@ public class Controller {
 			inputForselectCandidate.put("start", bookView.getStationFromID());
 			inputForselectCandidate.put("end", bookView.getStationToID());
 			inputForselectCandidate.put("seat", "0413A");
-			
+			System.out.println("inputForselectCandidate "+inputForselectCandidate);
 			
 			IBookTicketDictionary bt = new BookTicket();
 			bt.selectCandidate(inputForselectCandidate);

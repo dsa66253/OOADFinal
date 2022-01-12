@@ -70,11 +70,12 @@ public class BookTicket implements IBookTicketDictionary{
 			int standard_pirce = CalPrice(input.get("start"), input.get("end"), "standard");
 			
 			for(int i=0; i<standard_count; i++) {
+				System.out.println("standard_count "+ standard_count);
 				Ticket t = new Ticket();
 				t.setCode(input.get("uid"));
 				t.setUid(input.get("uid"));
 				t.setTicketInfo(0, "date", date);
-				t.setTicketInfo(0, "tickesType", "standard");
+				t.setTicketInfo(0, "ticketsType", "standard");
 				t.setTicketInfo(0, "start", input.get("start"));
 				t.setTicketInfo(0, "end", input.get("end"));
 				t.setTicketInfo(0, "seats", input.get("seat"));
@@ -83,7 +84,7 @@ public class BookTicket implements IBookTicketDictionary{
 				t.setPayDeadLine(payDeadline);
 				t.setPayment(standard_pirce);
 				tm.addTicket(t);
-				tm.save("Booking_test.json");
+				
 			}
 			
 		}
@@ -95,11 +96,12 @@ public class BookTicket implements IBookTicketDictionary{
 			int student_pirce = CalPrice(input.get("start"), input.get("end"), "0.8");
 			
 			for(int i=0; i<student_count; i++) {
+				System.out.println("student_count "+ student_count);
 				Ticket t = new Ticket();
 				t.setCode(input.get("uid"));
 				t.setUid(input.get("uid"));
 				t.setTicketInfo(0, "data", date);
-				t.setTicketInfo(0, "tickesType", "student");
+				t.setTicketInfo(0, "ticketsType", "student");
 				t.setTicketInfo(0, "start", input.get("start"));
 				t.setTicketInfo(0, "end", input.get("end"));
 				t.setTicketInfo(0, "seats", input.get("seat"));
@@ -110,7 +112,7 @@ public class BookTicket implements IBookTicketDictionary{
 				tm.addTicket(t);
 				
 			}
-			
+			tm.save("Booking_test.json");
 		}
 		
 		return isDone;
