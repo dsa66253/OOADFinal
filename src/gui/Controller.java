@@ -19,7 +19,7 @@ public class Controller {
 	private int index;
 	private int result;
 	private TicketManager aTicketManager;
-	private generalBooking order;
+	private SearchTrain order;
 	private Unbooking unbooking;
 	private LookInto lookinto;
 	private HomeView homeView;
@@ -27,10 +27,11 @@ public class Controller {
 	private CancelView cancelView;
 	private SearchBookView searchBookView;
 	ArrayList<Dictionary<String, String>> ISD;
+	
 	public Controller() {
 		index = 1;
-		aTicketManager = new TicketManager();
-		order = new generalBooking();
+		//aTicketManager = new TicketManager();
+		order = new SearchTrain();
 		unbooking = new Unbooking();
 		lookinto = new LookInto();
 
@@ -121,6 +122,7 @@ public class Controller {
 	// SearchBookView Ends
 
 	// BookView Begins
+	// BookView 查詢車次
 	public class SearchingButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -130,7 +132,7 @@ public class Controller {
 			inputForSearchCandidate.put("end", "1030");
 			inputForSearchCandidate.put("date","2021-02-02");
 			System.out.println("The Dictionary is: " + inputForSearchCandidate); 
-			ISD = order.searchCandidate(inputForSearchCandidate);
+			ISD = order.searchTicketByTime(inputForSearchCandidate);
 			System.out.println("ISD: " + ISD); 
 			for (int i=0; i<ISD.size(); i++) {
 				bookView.output("("+(i+1)+")\n");
@@ -193,7 +195,8 @@ public class Controller {
 //				System.out.println("Invalid input!");
 		}
 	}
-	//	BookView確認購票button綁定function
+	
+	// BookView 確認購票button綁定function
 	public class BookingButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
