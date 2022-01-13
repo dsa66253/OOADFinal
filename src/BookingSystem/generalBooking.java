@@ -11,7 +11,7 @@ import java.util.*;
 
 import static java.lang.Integer.*;
 
-public class generalBooking implements ISearchDictionary{
+public class generalBooking implements ISearchTrainDictionary{
     private TimeTable aTimeTable = new TimeTable();
     private Price aPrice = new Price();
     private Ticket aTicket = new Ticket();
@@ -668,6 +668,19 @@ public class generalBooking implements ISearchDictionary{
 			result = "Not found!\n";
 		}
 		return result;
+	}
+
+	@Override
+	public ArrayList<Dictionary<String, String>> searchTicketByTime(Dictionary<String, String> searchConditionDict) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Dictionary<String, String>> searchTicketByStationID(
+			Dictionary<String, String> searchConditionDict) {
+		// TODO Auto-generated method stub
+		return null;
 	}
    
 

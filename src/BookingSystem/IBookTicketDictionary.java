@@ -14,5 +14,6 @@ public interface IBookTicketDictionary {
 	 * 						"start", "end", "seat"}
 	*/
 	public Boolean selectCandidate(Dictionary<String, String> input);
+	public String Unbooking(String code, String uid);
 
 }

@@ -14,6 +14,7 @@ public class Test {
 		ArrayList<String> a = null;
 		return a;
 	}
+	
 //  parameters: index: corresponding searchCandidate's return index, buy the selected ticket 
 //	return: boolean: successful booking or not
 	public Boolean selectedCandidate(int index) {

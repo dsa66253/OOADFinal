@@ -18,6 +18,7 @@ import backend.Price;
 public class BookTicket implements IBookTicketDictionary{
 	
 	private Price aPrice = new Price();
+	private TicketManager tm = new TicketManager();
 	
     private int CalPrice(String start, String end, String ticketType) {
         int outputPrice = 0;
@@ -118,7 +119,52 @@ public class BookTicket implements IBookTicketDictionary{
 		return isDone;
 		
 	}
-	
+
+	private int BookingHistoryID(String code, String uid) throws wrongInputException {
+		//    	System.out.println("tm.toString() " + tm.toString());
+				for (int i = 0; i < tm.getSize(); i++) {
+					if (tm.getTicketObj(i).getCode().equals(code) && tm.getTicketObj(i).getUid().equals(uid)) {
+						return i;
+					}
+				}
+				throw new wrongInputException("NO BOOKING HISTORY FOUND");
+			}
+		
+			public String BookingHistory(String code, String uid) {
+				String result = "";
+				try {
+					int idx = BookingHistoryID(code, uid);
+					result = "\nBooking Code: " + tm.getTicketObj(idx).getCode();
+					result = result + "\nUser ID: " + tm.getTicketObj(idx).getUid();
+					result = result + "\nDate: " + tm.getTicketObj(idx).getTicketInfo(0, "date");
+					result = result + "\nTickets Type: " + tm.getTicketObj(idx).getTicketInfo(0, "ticketsType");
+					result = result + "\nSeats: " + tm.getTicketObj(idx).getTicketInfo(0, "seats");
+					result = result + "\nPay Deadline: " + tm.getTicketObj(idx).getPayDeadLine();
+					result = result + "\nPayment: " + tm.getTicketObj(idx).getPayment() + "\n";
+				} catch (wrongInputException e) {
+					result = "Not found!\n";
+				}
+		
+				return result;
+			}
+
+	public String Unbooking(String code, String uid) {
+		int idx;
+		String result = "";
+		System.out.println(code + " "+ uid);
+		try {
+			result = BookingHistory( code,  uid);
+			idx = BookingHistoryID(code, uid);
+			System.out.println(tm.getSize());
+			tm.removeTicket(idx);
+			System.out.println(tm.getSize());
+			tm.save();
+		} catch (wrongInputException e) {
+			System.out.println("Not found!\n"+ e);
+			result = "Not found!\n";
+		}
+		return result;
+	}
 	
 
 	public static void main(String[] args) {

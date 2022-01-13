@@ -11,30 +11,29 @@ import java.awt.event.*;
 //無訂購回程票的介面
 public class BookView extends JFrame {
 	private JPanel contentPane;
-	private JTextField uidIn;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_1_1;
-	private JLabel label_1_2;
-	private JComboBox comboBox;
-	private JComboBox comboBox1;
-	private JLabel label_2;
-	private JRadioButton radioButton;
-	private JRadioButton radioButton1;
+	private JTextField UIDTextField;
+	private JLabel UIDLabel;
+	private JLabel stationLabel;
+	private JLabel stationFromLabel;
+	private JLabel stationToLabel;
+	private JComboBox stationFromComboBox;
+	private JComboBox stationToComboBox;
+	private JLabel carTypeLabel;
+	private JRadioButton startardCarTypeRadioButton;
+	private JRadioButton businessCarTypeRadioButton;
 	private JLabel label_3;
 	private JRadioButton radioButton2;
 	private JRadioButton radioButton3;
 	private JRadioButton radioButton4;
-	private JLabel label_4;
-	private JRadioButton radioButton5;
-	private JRadioButton radioButton6;
-	private JLabel label_5;
-	private JLabel label_6;
+	private JLabel searchMethodLabel;
+	private JRadioButton searchMethodTimeRadioButton;
+	private JRadioButton searchMethodTrainNumberRadioButton;
+	private JLabel dateLabel;
 	private JLabel label_7;
 	private JCheckBox checkBox;
-	private JTextField timeIn;
+	private JTextField dateTextField;
 	private JTextField timeIn1;
-	private JLabel label_8;
+	private JLabel dateFormatLabel;
 	private JLabel label_9;
 	private JLabel label_10;
 	private JLabel label_11;
@@ -47,17 +46,16 @@ public class BookView extends JFrame {
 	private JButton homeButton;
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
-	private JLabel label_12;
-	private JTextField toTime;
-	private JLabel label_13;
+	private JTextField searchMethodTimeTextField;
+	private JLabel searchMethodTimeLabel;
 	private JLabel label_14;
 	private JTextField fromTime;
 	private JLabel label_15;
-	private JLabel label_16;
-	private JTextField orderIndex;
+	private JLabel ticketNumberLabel;
+	private JTextField ticketNumberTextField;
 	private JButton enterButton;
-	private JLabel label_17;
-	private JTextField trainNumber;
+	private JLabel searchMethodTrainNumberLabel;
+	private JTextField searchMethodTrainNumberTextField;
 
 	/**
 	 * Launch the application.
@@ -79,67 +77,67 @@ public class BookView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		label = new JLabel("UID");
-		label.setBounds(390, 94, 68, 19);
-		contentPane.add(label);
+		UIDLabel = new JLabel("UID");
+		UIDLabel.setBounds(750, 401, 68, 19);
+		contentPane.add(UIDLabel);
 
-		uidIn = new JTextField("");
-		uidIn.setEnabled(true);
-		uidIn.setBounds(460, 10, 150, 19);
-		contentPane.add(uidIn);
-		uidIn.setColumns(10);
+		UIDTextField = new JTextField("");
+		UIDTextField.setEnabled(true);
+		UIDTextField.setBounds(860, 400, 118, 19);
+		contentPane.add(UIDTextField);
+		UIDTextField.setColumns(10);
 
-		label_1 = new JLabel("起訖站");
-		label_1.setBounds(390, 137, 68, 19);
-		contentPane.add(label_1);
+		stationLabel = new JLabel("起訖站");
+		stationLabel.setBounds(392, 129, 68, 19);
+		contentPane.add(stationLabel);
 
-		label_1_1 = new JLabel("起程站");
-		label_1_1.setBounds(460, 137, 68, 19);
-		contentPane.add(label_1_1);
+		stationFromLabel = new JLabel("起程站");
+		stationFromLabel.setBounds(462, 129, 40, 19);
+		contentPane.add(stationFromLabel);
 
 		String[] station = { "南港", "台北", "板橋", "桃園", "新竹", "苗栗", "台中", "彰化", "雲林", "嘉義", "台南", "左營" };
-		comboBox = new JComboBox(station);
-		comboBox.setBounds(500, 137, 68, 19);
-		contentPane.add(comboBox);
+		stationFromComboBox = new JComboBox(station);
+		stationFromComboBox.setBounds(502, 129, 80, 19);
+		contentPane.add(stationFromComboBox);
 
-		label_1_2 = new JLabel("到達站");
-		label_1_2.setBounds(580, 137, 68, 19);
-		contentPane.add(label_1_2);
+		stationToLabel = new JLabel("到達站");
+		stationToLabel.setBounds(590, 129, 40, 19);
+		contentPane.add(stationToLabel);
 
-		comboBox1 = new JComboBox(station);
-		comboBox1.setBounds(620, 137, 68, 19);
-		contentPane.add(comboBox1);
+		stationToComboBox = new JComboBox(station);
+		stationToComboBox.setBounds(630, 129, 90, 19);
+		contentPane.add(stationToComboBox);
 
-		label_2 = new JLabel("車廂種類");
-		label_2.setBounds(390, 180, 68, 19);
-		contentPane.add(label_2);
+		carTypeLabel = new JLabel("車廂種類");
+		carTypeLabel.setBounds(750, 432, 68, 19);
+		contentPane.add(carTypeLabel);
 
-		radioButton = new JRadioButton("標準車廂");
-		radioButton.setBounds(460, 180, 100, 19);
-		contentPane.add(radioButton);
+		startardCarTypeRadioButton = new JRadioButton("標準車廂");
+		startardCarTypeRadioButton.setBounds(860, 432, 100, 19);
+		contentPane.add(startardCarTypeRadioButton);
 
-		radioButton1 = new JRadioButton("商務車廂");
-		radioButton1.setBounds(600, 180, 100, 19);
-		contentPane.add(radioButton1);
+		businessCarTypeRadioButton = new JRadioButton("商務車廂");
+		businessCarTypeRadioButton.setBounds(972, 431, 100, 19);
+		contentPane.add(businessCarTypeRadioButton);
 
 		buttonGroup = new ButtonGroup();
-		buttonGroup.add(radioButton);
-		buttonGroup.add(radioButton1);
+		buttonGroup.add(startardCarTypeRadioButton);
+		buttonGroup.add(businessCarTypeRadioButton);
 
 		label_3 = new JLabel("座位喜好");
-		label_3.setBounds(390, 223, 68, 19);
+		label_3.setBounds(750, 468, 68, 19);
 		contentPane.add(label_3);
 
 		radioButton2 = new JRadioButton("無");
-		radioButton2.setBounds(460, 223, 80, 19);
+		radioButton2.setBounds(860, 468, 80, 19);
 		contentPane.add(radioButton2);
 
 		radioButton3 = new JRadioButton("靠窗優先");
-		radioButton3.setBounds(540, 223, 80, 19);
+		radioButton3.setBounds(971, 467, 90, 19);
 		contentPane.add(radioButton3);
 
 		radioButton4 = new JRadioButton("走道優先");
-		radioButton4.setBounds(620, 223, 80, 19);
+		radioButton4.setBounds(1087, 467, 100, 19);
 		contentPane.add(radioButton4);
 
 		buttonGroup1 = new ButtonGroup();
@@ -147,29 +145,25 @@ public class BookView extends JFrame {
 		buttonGroup1.add(radioButton3);
 		buttonGroup1.add(radioButton4);
 
-		label_4 = new JLabel("訂位方式");
-		label_4.setBounds(390, 266, 68, 19);
-		contentPane.add(label_4);
+		searchMethodLabel = new JLabel("查詢方式");
+		searchMethodLabel.setBounds(392, 209, 68, 19);
+		contentPane.add(searchMethodLabel);
 
-		radioButton5 = new JRadioButton("依時間搜尋");
-		radioButton5.setBounds(460, 266, 100, 19);
-		contentPane.add(radioButton5);
+		searchMethodTimeRadioButton = new JRadioButton("依時間搜尋");
+		searchMethodTimeRadioButton.setBounds(462, 208, 100, 19);
+		contentPane.add(searchMethodTimeRadioButton);
 
-		radioButton6 = new JRadioButton("輸入車次號碼");
-		radioButton6.setBounds(560, 266, 100, 19);
-		contentPane.add(radioButton6);
+		searchMethodTrainNumberRadioButton = new JRadioButton("輸入車次號碼");
+		searchMethodTrainNumberRadioButton.setBounds(462, 240, 118, 19);
+		contentPane.add(searchMethodTrainNumberRadioButton);
 
 		buttonGroup2 = new ButtonGroup();
-		buttonGroup2.add(radioButton5);
-		buttonGroup2.add(radioButton6);
+		buttonGroup2.add(searchMethodTimeRadioButton);
+		buttonGroup2.add(searchMethodTrainNumberRadioButton);
 
-		label_5 = new JLabel("時間");
-		label_5.setBounds(390, 309, 68, 19);
-		contentPane.add(label_5);
-
-		label_6 = new JLabel("去程");
-		label_6.setBounds(460, 309, 68, 19);
-		contentPane.add(label_6);
+		dateLabel = new JLabel("去程日期");
+		dateLabel.setBounds(390, 168, 68, 19);
+		contentPane.add(dateLabel);
 
 //		label_7 = new JLabel("回程");
 //		label_7.setBounds(460, 329, 68, 19);
@@ -192,11 +186,11 @@ public class BookView extends JFrame {
 //			}
 //		});
 
-		timeIn = new JTextField();
-		timeIn.setEnabled(true);
-		timeIn.setBounds(500, 309, 68, 19);
-		contentPane.add(timeIn);
-		timeIn.setColumns(10);
+		dateTextField = new JTextField();
+		dateTextField.setEnabled(true);
+		dateTextField.setBounds(460, 168, 118, 19);
+		contentPane.add(dateTextField);
+		dateTextField.setColumns(10);
 
 //		timeIn1 = new JTextField();
 //		timeIn1.setEnabled(false);
@@ -204,31 +198,27 @@ public class BookView extends JFrame {
 //		contentPane.add(timeIn1);
 //		timeIn1.setColumns(10);
 
-		label_8 = new JLabel("日期輸入格式 xxxx-xx-xx");
-		label_8.setBounds(700, 309, 150, 19);
-		contentPane.add(label_8);
+		dateFormatLabel = new JLabel("日期輸入格式 xxxx-xx-xx");
+		dateFormatLabel.setBounds(598, 168, 169, 19);
+		contentPane.add(dateFormatLabel);
 		
-		label_12 = new JLabel("約");
-		label_12.setBounds(580, 309, 20, 19);
-		contentPane.add(label_12);
+		searchMethodTimeTextField = new JTextField();
+		searchMethodTimeTextField.setEnabled(true);
+		searchMethodTimeTextField.setBounds(653, 208, 50, 19);
+		contentPane.add(searchMethodTimeTextField);
 		
-		toTime = new JTextField();
-		toTime.setEnabled(true);
-		toTime.setBounds(600, 309, 20, 19);
-		contentPane.add(toTime);
+		searchMethodTimeLabel = new JLabel("發車時間");
+		searchMethodTimeLabel.setBounds(588, 209, 60, 19);
+		contentPane.add(searchMethodTimeLabel);
 		
-		label_13 = new JLabel("點出發");
-		label_13.setBounds(625, 309, 40, 19);
-		contentPane.add(label_13);
+		searchMethodTrainNumberLabel = new JLabel("車次號碼");
+		searchMethodTrainNumberLabel.setBounds(588, 241, 60, 19);
+		contentPane.add(searchMethodTrainNumberLabel);
 		
-		label_17 = new JLabel("車次號碼");
-		label_17.setBounds(580, 330, 60, 19);
-		contentPane.add(label_17);
-		
-		trainNumber = new JTextField();
-		trainNumber.setEnabled(true);
-		trainNumber.setBounds(640, 330, 50, 19);
-		contentPane.add(trainNumber);
+		searchMethodTrainNumberTextField = new JTextField();
+		searchMethodTrainNumberTextField.setEnabled(true);
+		searchMethodTrainNumberTextField.setBounds(653, 240, 50, 19);
+		contentPane.add(searchMethodTrainNumberTextField);
 		
 //		label_14 = new JLabel("約");
 //		label_14.setBounds(580, 329, 20, 19);
@@ -244,123 +234,141 @@ public class BookView extends JFrame {
 //		contentPane.add(label_15);
 
 		label_9 = new JLabel("票數");
-		label_9.setBounds(390, 352, 68, 19);
+		label_9.setBounds(750, 502, 68, 19);
 		contentPane.add(label_9);
 
 		label_10 = new JLabel("全票");
-		label_10.setBounds(460, 352, 68, 19);
+		label_10.setBounds(860, 499, 68, 19);
 		contentPane.add(label_10);
 
 		label_11 = new JLabel("大學生優惠票");
-		label_11.setBounds(460, 372, 80, 19);
+		label_11.setBounds(860, 519, 80, 19);
 		contentPane.add(label_11);
 
 		Integer[] ticket = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		comboBox2 = new JComboBox(ticket);
-		comboBox2.setBounds(560, 352, 68, 19);
+		comboBox2.setBounds(960, 499, 68, 19);
 		contentPane.add(comboBox2);
 
 		comboBox3 = new JComboBox(ticket);
-		comboBox3.setBounds(560, 372, 68, 19);
+		comboBox3.setBounds(960, 519, 68, 19);
 		contentPane.add(comboBox3);
 
 		searchingButton = new JButton("搜尋");
-		searchingButton.setBounds(800, 380, 68, 19);
+		searchingButton.setBounds(785, 242, 68, 19);
 		contentPane.add(searchingButton);
 
 		homeButton = new JButton("回主畫面");
 		homeButton.setBounds(800, 50, 90, 19);
 		contentPane.add(homeButton);
 		
-		textArea = new JTextArea();
-		textArea.setEditable(false);
-		
-		scrollPane = new JScrollPane(textArea);
-		scrollPane.setBounds(390, 430, 300, 300);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(390, 292, 300, 438);
 		contentPane.add(scrollPane);
 		
-		label_16 = new JLabel("請輸入代號");
-		label_16.setBounds(750, 500, 100, 19);
-		contentPane.add(label_16);
+		ticketNumberLabel = new JLabel("請輸入車票代號");
+		ticketNumberLabel.setBounds(751, 369, 102, 19);
+		contentPane.add(ticketNumberLabel);
 		
-		orderIndex = new JTextField();
-		orderIndex.setEnabled(true);
-		orderIndex.setBounds(820, 500, 20, 19);
-		contentPane.add(orderIndex);
-		orderIndex.setColumns(10);
+		ticketNumberTextField = new JTextField();
+		ticketNumberTextField.setEnabled(true);
+		ticketNumberTextField.setBounds(860, 368, 40, 19);
+		contentPane.add(ticketNumberTextField);
+		ticketNumberTextField.setColumns(10);
 		
-		enterButton = new JButton("確認");
-		enterButton.setBounds(800, 650, 68, 19);
+		enterButton = new JButton("下一步");
+		enterButton.setBounds(750, 567, 68, 19);
 		contentPane.add(enterButton);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(390, 292, 296, 296);
+		contentPane.add(textArea);
+		textArea.setEditable(false);
+		
+		JLabel ticketTypeCategoryLabel = new JLabel("票種種類");
+		ticketTypeCategoryLabel.setBounds(750, 338, 68, 19);
+		contentPane.add(ticketTypeCategoryLabel);
+		
+		JRadioButton oneWayRadioButton = new JRadioButton("單程票");
+		oneWayRadioButton.setBounds(861, 338, 80, 19);
+		contentPane.add(oneWayRadioButton);
+		
+		JRadioButton roundTripRadioButton = new JRadioButton("來回票");
+		roundTripRadioButton.setBounds(963, 337, 100, 19);
+		contentPane.add(roundTripRadioButton);
+		
+		JLabel bookTicketLabel = new JLabel("訂票資訊");
+		bookTicketLabel.setBounds(750, 304, 68, 19);
+		contentPane.add(bookTicketLabel);
 	}
 
 	public String getuidIn() {
-		return (uidIn.getText());
+		return (UIDTextField.getText());
 	}
 	
 	public String getStationFromID() {
 		//comboBox.addActionListener(comboBox);
 		String ID = "";
-		if (comboBox.getSelectedIndex() == 0)
+		if (stationFromComboBox.getSelectedIndex() == 0)
 			ID = "0990";
-		if (comboBox.getSelectedIndex() == 1)
+		if (stationFromComboBox.getSelectedIndex() == 1)
 			ID = "1000";
-		if (comboBox.getSelectedIndex() == 2)
+		if (stationFromComboBox.getSelectedIndex() == 2)
 			ID = "1010";
-		if (comboBox.getSelectedIndex() == 3)
+		if (stationFromComboBox.getSelectedIndex() == 3)
 			ID = "1020";
-		if (comboBox.getSelectedIndex() == 4)
+		if (stationFromComboBox.getSelectedIndex() == 4)
 			ID = "1030";
-		if (comboBox.getSelectedIndex() == 5)
+		if (stationFromComboBox.getSelectedIndex() == 5)
 			ID = "1035";
-		if (comboBox.getSelectedIndex() == 6)
+		if (stationFromComboBox.getSelectedIndex() == 6)
 			ID = "1040";
-		if (comboBox.getSelectedIndex() == 7)
+		if (stationFromComboBox.getSelectedIndex() == 7)
 			ID = "1043";
-		if (comboBox.getSelectedIndex() == 8)
+		if (stationFromComboBox.getSelectedIndex() == 8)
 			ID = "1047";
-		if (comboBox.getSelectedIndex() == 9)
+		if (stationFromComboBox.getSelectedIndex() == 9)
 			ID = "1050";
-		if (comboBox.getSelectedIndex() == 10)
+		if (stationFromComboBox.getSelectedIndex() == 10)
 			ID = "1060";
-		if (comboBox.getSelectedIndex() == 11)
+		if (stationFromComboBox.getSelectedIndex() == 11)
 			ID = "1070";
 		return ID;
 	}
 	
 	public String getStationToID() {
 		String ID = "";
-		if (comboBox1.getSelectedIndex() == 0)
+		if (stationToComboBox.getSelectedIndex() == 0)
 			ID = "0990";
-		if (comboBox1.getSelectedIndex() == 1)
+		if (stationToComboBox.getSelectedIndex() == 1)
 			ID = "1000";
-		if (comboBox1.getSelectedIndex() == 2)
+		if (stationToComboBox.getSelectedIndex() == 2)
 			ID = "1010";
-		if (comboBox1.getSelectedIndex() == 3)
+		if (stationToComboBox.getSelectedIndex() == 3)
 			ID = "1020";
-		if (comboBox1.getSelectedIndex() == 4)
+		if (stationToComboBox.getSelectedIndex() == 4)
 			ID = "1030";
-		if (comboBox1.getSelectedIndex() == 5)
+		if (stationToComboBox.getSelectedIndex() == 5)
 			ID = "1035";
-		if (comboBox1.getSelectedIndex() == 6)
+		if (stationToComboBox.getSelectedIndex() == 6)
 			ID = "1040";
-		if (comboBox1.getSelectedIndex() == 7)
+		if (stationToComboBox.getSelectedIndex() == 7)
 			ID = "1043";
-		if (comboBox1.getSelectedIndex() == 8)
+		if (stationToComboBox.getSelectedIndex() == 8)
 			ID = "1047";
-		if (comboBox1.getSelectedIndex() == 9)
+		if (stationToComboBox.getSelectedIndex() == 9)
 			ID = "1050";
-		if (comboBox1.getSelectedIndex() == 10)
+		if (stationToComboBox.getSelectedIndex() == 10)
 			ID = "1060";
-		if (comboBox1.getSelectedIndex() == 11)
+		if (stationToComboBox.getSelectedIndex() == 11)
 			ID = "1070";
 		return ID;
 	}
 
 	public String getStandardOrBusiness() {
-		if (radioButton.isSelected())
+		if (startardCarTypeRadioButton.isSelected())
 			return "standard";
-		else if (radioButton1.isSelected())
+		else if (businessCarTypeRadioButton.isSelected())
 			return "business";
 		else
 			return null;
@@ -378,16 +386,16 @@ public class BookView extends JFrame {
 	}
 
 	public String getOrderType() {
-		if (radioButton5.isSelected())
+		if (searchMethodTimeRadioButton.isSelected())
 			return "0";
-		else if (radioButton6.isSelected())
+		else if (searchMethodTrainNumberRadioButton.isSelected())
 			return "1";
 		else
 			return null;
 	}
 
 	public String getTimeIn() {
-		return (timeIn.getText());
+		return (dateTextField.getText());
 	}
 
 	public String getTime1In() {
@@ -403,7 +411,7 @@ public class BookView extends JFrame {
 	}
 	
 	public int getToTime() {
-		return (Integer.parseInt(toTime.getText()));
+		return (Integer.parseInt(searchMethodTimeTextField.getText()));
 	}
 	
 	public int getFromTime() {
@@ -411,11 +419,11 @@ public class BookView extends JFrame {
 	}
 	
 	public int getOrderIndex() {
-		return (Integer.parseInt(orderIndex.getText()));
+		return (Integer.parseInt(ticketNumberTextField.getText()));
 	}
 	
 	public String getTrainNumber() {
-		return (trainNumber.getText());
+		return (searchMethodTrainNumberTextField.getText());
 	}
 	
 	//button for search result
@@ -439,20 +447,20 @@ public class BookView extends JFrame {
 	}
 	
 	public void clear() {
-		uidIn.setText("");
-		timeIn.setText("");
+		UIDTextField.setText("");
+		dateTextField.setText("");
 		//timeIn1.setText("");
-		toTime.setText("");
+		searchMethodTimeTextField.setText("");
 		//fromTime.setText("");
-		trainNumber.setText("");
+		searchMethodTrainNumberTextField.setText("");
 		buttonGroup.clearSelection();
 		buttonGroup1.clearSelection();
 		buttonGroup2.clearSelection();
 		textArea.setText("");
-		comboBox.setSelectedIndex(0);
-		comboBox1.setSelectedIndex(0);
+		stationFromComboBox.setSelectedIndex(0);
+		stationToComboBox.setSelectedIndex(0);
 		comboBox2.setSelectedIndex(0);
 		comboBox3.setSelectedIndex(0);
-		orderIndex.setText("");
+		ticketNumberTextField.setText("");
 	}
 }
